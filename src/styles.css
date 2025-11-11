@@ -1,0 +1,57 @@
+:root {
+  --bg: #0b1221;
+  --panel: rgba(255,255,255,0.04);
+  --accent: #ffd166;
+  --text: #ffffff;
+}
+
+html,body,#app {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, Arial, sans-serif;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* make app a positioned container so absolute UI controls can overlay the canvas */
+  position: relative;
+}
+
+/* UI overlay container. pointer-events none lets clicks pass through except for interactive children */
+#ui {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  pointer-events: none;
+}
+
+/* Restart / overlay buttons inside #ui should be interactive */
+#ui > button {
+  pointer-events: auto;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#ui > button:hover {
+  filter: brightness(1.06);
+}
+
+canvas#game {
+  width: min(800px, 95vw);
+  height: min(450px, 60vh);
+  background: linear-gradient(#7ec0ee 0%, #67a9f2 60%, #4b82d6 100%);
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  image-rendering: pixelated;
+}
